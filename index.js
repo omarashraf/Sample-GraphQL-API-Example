@@ -8,8 +8,10 @@ const Inert = require('inert');
 const Vision = require('vision');
 const HapiSwagger = require('hapi-swagger');
 const Pack = require('./package');
+const dotenv = require('dotenv');
+const result = dotenv.config()
 
-mongoose.connect('mongodb://omarashraf:heaCONNth77@ds161740.mlab.com:61740/modern-api-db');
+mongoose.connect(`mongodb://${result.parsed["USER"]}:${result.parsed["PASSWORD"]}@${result.parsed["DB"]}`);
 
 mongoose.connection.once('open', () => {
     console.log("connected to mlab's db");
